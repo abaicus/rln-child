@@ -1,6 +1,6 @@
 <?php
 
-class RLN_Posts_Dropdown extends WP_Customize_Control {
+class RLN_Posts_Pages_Dropdown extends WP_Customize_Control {
 
 	public function render_content() {
 

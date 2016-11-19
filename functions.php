@@ -33,7 +33,7 @@ function rln_child_customize_register( $wp_customize ) {
 			'default' => '-',
 		) );
 
-		$wp_customize->add_control( new RLN_Posts_Dropdown( $wp_customize, 'rln_content_setting_'. $i, array(
+		$wp_customize->add_control( new RLN_Posts_Pages_Dropdown( $wp_customize, 'rln_content_setting_'. $i, array(
 			'label'    => __( 'Featured Content No. ' . $i , 'rln-child' ),
 			'priority' => '$i',
 			'section'  => 'rln_featured_content',
