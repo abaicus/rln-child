@@ -13,23 +13,7 @@ function catch_responsive_parent_theme_enqueue_styles() {
 
 function rln_child_customize_register( $wp_customize ) {
 
-
-	$the_posts = array( '-' => __( 'Select post', 'rln-child' ) );
-
-	// Loop the posts.
-	$options = array();
-	$postargs = wp_parse_args($options, array(
-		'numberposts' => '-1',
-		'post_type' => array(
-			'post', 'page',
-		),
-	) );
-
-	$posts = get_posts($postargs);
-
-	foreach ( $posts as $post ) {
-		$the_posts[$post->ID] = $post->post_title;
-	}
+	require_once( get_stylesheet_directory() . '/dropdown-posts.php' );
 
 	//loop for featured page content
 	$wp_customize->add_section( 'rln_featured_content', array(
@@ -49,13 +33,13 @@ function rln_child_customize_register( $wp_customize ) {
 			'default' => '-',
 		) );
 
-		$wp_customize->add_control( 'rln_content_setting_' . $i, array(
+		$wp_customize->add_control( new RLN_Posts_Dropdown( $wp_customize, 'rln_content_setting_'. $i, array(
 			'label'    => __( 'Featured Content No. ' . $i , 'rln-child' ),
-			'priority' => '1',
+			'priority' => '$i',
 			'section'  => 'rln_featured_content',
-			'type'     => 'select',
-			'choices'  => $the_posts,
-		) );
+//			'type'     => 'select',
+//			'choices'  => $the_posts,
+		) ) );
 	}
 
 
